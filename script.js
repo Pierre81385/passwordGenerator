@@ -11,7 +11,7 @@ var characters = "";
 
 function getUserInput() {
   passwordLength = prompt("How long does your password need to be?");
-
+  var checkFalse = 0;
   if (passwordLength < 8) {
     alert("The password must be at least 8 characters long.");
     passwordLength = prompt("How long does your password need to be?");
@@ -24,48 +24,53 @@ function getUserInput() {
     "Would you like to include lowercase letters in your password? Yes or No"
   );
 
-  if (userChoices == "Yes") {
+  if (userChoices == "yes") {
     lowerCaseChoice = true;
     characters += lowerCaseLetters;
   } else {
     lowerCaseChoice = false;
+    checkFalse++;
   }
 
   var userChoices = prompt(
     "Would you like to include uppercase letters in your password? Yes or No"
   );
 
-  if (userChoices == "Yes") {
+  if (userChoices == "yes") {
     upperCaseChoice = true;
     characters += upperCaseLetters;
   } else {
     upperCaseChoice = false;
+    checkFalse++;
   }
 
   var userChoices = prompt(
     "Would you like to include numbers in your password? Yes or No"
   );
 
-  if (userChoices == "Yes") {
+  if (userChoices == "yes") {
     numericChoice = true;
     characters += numbers;
   } else {
     numericChoice = false;
+    checkFalse++;
   }
 
   var userChoices = prompt(
     "Would you like to include special characters in your password? Yes or No"
   );
 
-  if (userChoices == "Yes") {
+  if (userChoices == "yes") {
     specialChar = true;
     characters += specialCharacters;
   } else {
     specialChar = false;
+    checkFalse++;
+    console.log(checkFalse);
   }
 
-  if (!lowerCaseChoice && !upperCaseChoice && !numericChoice && !specialChar) {
-    alert("You must select at least 1 character typoe!");
+  if (checkFalse === 4) {
+    alert("You must select at least 1 character type!");
     getUserInput();
   }
 
